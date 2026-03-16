@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"/Users/eftalaydin/Desktop/Frava/E2E Test Suite\" && pnpm install 2>&1)",
+      "Bash(cd \"/Users/eftalaydin/Desktop/Frava/E2E Test Suite\" && pnpm approve-builds 2>&1)",
+      "Bash(pkill -f \"pnpm approve-builds\" 2>/dev/null; true)",
+      "Bash(cd \"/Users/eftalaydin/Desktop/Frava/E2E Test Suite\" && pnpm --filter panel start 2>&1)",
+      "Bash(ls \"/Users/eftalaydin/Desktop/Frava/E2E Test Suite/node_modules/@angular/core/package.json\" 2>/dev/null && grep '\"version\"' \"/Users/eftalaydin/Desktop/Frava/E2E Test Suite/node_modules/@angular/core/package.json\")",
+      "Bash(cd \"/Users/eftalaydin/Desktop/Frava/E2E Test Suite\" && pnpm --filter e2e test 2>&1)",
+      "Bash(cd \"/Users/eftalaydin/Desktop/Frava/E2E Test Suite/packages/e2e\" && npx playwright install chromium 2>&1 | tail -5)",
+      "Bash(cd \"/Users/eftalaydin/Desktop/Frava/E2E Test Suite/packages/e2e\" && node_modules/.bin/playwright install chromium 2>&1)",
+      "Bash(cd \"/Users/eftalaydin/Desktop/Frava/E2E Test Suite/packages/e2e\" && node_modules/.bin/playwright install chromium 2>&1; echo \"exit: $?\")"
+    ]
+  }
+}
