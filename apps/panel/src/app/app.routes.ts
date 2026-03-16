@@ -30,6 +30,13 @@ export const routes: Routes = [
       import('./talents/talent-profile-form.component').then((m) => m.TalentProfileFormComponent),
   },
 
+  // Settings
+  {
+    path: 'settings',
+    loadComponent: () =>
+      import('./settings/settings.component').then((m) => m.SettingsComponent),
+  },
+
   // Bookings
   {
     path: 'bookings',
