@@ -37,6 +37,25 @@ export const routes: Routes = [
       import('./settings/settings.component').then((m) => m.SettingsComponent),
   },
 
+  // Portfolio Package — talent selection & package creation flow
+  {
+    path: 'portfolio',
+    loadComponent: () =>
+      import('./portfolio/talent-selection.component').then((m) => m.TalentSelectionComponent),
+  },
+  {
+    path: 'portfolio/package',
+    loadComponent: () =>
+      import('./portfolio/portfolio-package.component').then((m) => m.PortfolioPackageComponent),
+  },
+
+  // Statement
+  {
+    path: 'statement',
+    loadComponent: () =>
+      import('./statement/statement.component').then((m) => m.StatementComponent),
+  },
+
   // Bookings
   {
     path: 'bookings',

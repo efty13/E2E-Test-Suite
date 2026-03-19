@@ -1,91 +1,55 @@
-# E2E-Test-Suite
+# Frava — E2E Test Suite
 
-A monorepo containing an Angular panel application and a Playwright end-to-end test suite.
+Angular panel uygulaması ve Playwright E2E test paketini içeren pnpm monorepo.
 
-## Project Structure
-
-```
-E2E-Test-Suite/
-├── apps/
-│   └── panel/          # Angular application (TypeScript)
-├── packages/
-│   └── e2e/            # Playwright test suite
-├── package.json
-├── pnpm-workspace.yaml
-└── pnpm-lock.yaml
-```
-
-## Prerequisites
-
-- [Node.js](https://nodejs.org/) v18+
-- [pnpm](https://pnpm.io/) v8+
-
-## Getting Started
-
-### Install dependencies
+## Hızlı Başlangıç
 
 ```bash
-pnpm install
+pnpm install                        # bağımlılıkları kur
+pnpm --filter panel start           # Angular dev server → http://localhost:4200
+pnpm --filter e2e test              # tüm testleri çalıştır (ayrı terminalde)
 ```
 
-### Run the Angular app
+## Sayfalar
 
-```bash
-cd apps/panel
-pnpm start
-```
+| Route | Sayfa |
+|---|---|
+| `/users` | Kullanıcı listesi |
+| `/talents` | Talent profil listesi |
+| `/talents/new` | Yeni profil formu |
+| `/talents/:id` | Profil detayı |
+| `/talents/:id/edit` | Profil düzenleme |
+| `/bookings` | Booking listesi |
+| `/bookings/:id` | Booking detayı |
+| `/settings` | Kullanıcı tercihleri |
 
-The app will be available at `http://localhost:4200`.
+## Test Dosyaları
 
-### Run E2E tests
+| Dosya | Senaryo |
+|---|---|
+| `smoke.spec.ts` | App ayağa kalkar |
+| `booking-crud.spec.ts` | Booking oluştur → listede gör → detay |
+| `booking-conflict.spec.ts` | Double booking prevention |
+| `double-booking-prevention.spec.ts` | Negative test — conflict iş kuralları |
+| `profile-management.spec.ts` | Profil CRUD + fotoğraf yükleme + persistence |
+| `user-preferences-persistence.spec.ts` | Settings localStorage regression |
 
-Make sure the app is running, then in a separate terminal:
+## Dokümantasyon
 
-```bash
-cd packages/e2e
-pnpm test
-```
+Detaylı referans için → **[docs/](./docs/README.md)**
 
-Or run both together from the root:
+| Döküman | İçerik |
+|---|---|
+| [docs/architecture.md](./docs/architecture.md) | Mimari, servisler, state, routing, teknik notlar |
+| [docs/test/test-files.md](./docs/test/test-files.md) | Tüm spec dosyaları ve senaryolar |
+| [docs/test/data-testids.md](./docs/test/data-testids.md) | Feature bazlı tam testid referansı |
+| [docs/test/conventions.md](./docs/test/conventions.md) | Test yazım kuralları ve kalıpları |
 
-```bash
-pnpm --filter panel start &
-pnpm --filter e2e test
-```
+## Teknik Yığın
 
-## Apps
-
-### `apps/panel`
-
-Angular standalone application with:
-- **Talent List** (`/talents`) — browsable talent cards with multi-select
-- **Profile Management** (`/profiles`) — create, edit, and persist talent profiles
-
-State management uses Angular Signals. Styling is done with Tailwind CSS.
-
-### `packages/e2e`
-
-Playwright test suite covering:
-
-| Test file | Scenario |
-|-----------|----------|
-| `talent-selection.spec.ts` | Multi-select checkboxes and toolbar count |
-| `profile-management.spec.ts` | Profile creation, photo upload, edit, and persistence |
-
-Tests use `data-testid` attributes for element selection via `getByTestId()`.
-
-## Scripts
-
-| Command | Description |
-|---------|-------------|
-| `pnpm install` | Install all workspace dependencies |
-| `pnpm --filter panel start` | Start the Angular dev server |
-| `pnpm --filter panel build` | Build the Angular app |
-| `pnpm --filter e2e test` | Run all Playwright tests |
-| `pnpm --filter e2e test --ui` | Run Playwright tests with UI mode |
-
-## Tech Stack
-
-- **Frontend:** Angular 17, TypeScript, Tailwind CSS, Angular Signals
-- **Testing:** Playwright
-- **Package manager:** pnpm workspaces
+| Katman | Teknoloji |
+|---|---|
+| Frontend | Angular 19, Standalone, Zoneless, Signals |
+| Stil | Tailwind CSS v4 |
+| Testler | Playwright, Chromium |
+| Paket yönetimi | pnpm workspaces |
